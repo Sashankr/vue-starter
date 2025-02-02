@@ -1,28 +1,26 @@
-// const buttonEl = document.querySelector("button");
-// const inputEl = document.querySelector("input");
-// const listEl = document.querySelector("ul");
-
-// function addItem() {
-//   const content = inputEl.value;
-//   const newItem = document.createElement("li");
-//   newItem.textContent = content;
-//   listEl.appendChild(newItem);
-//   inputEl.value = "";
-// }
-
-// buttonEl.addEventListener("click", addItem);
-
-Vue.createApp({
+const app = Vue.createApp({
   data() {
     return {
-      currentInput: "",
-      goals: [],
+      paraClassName: "",
+      isParaVisible: true,
+      paraColor: "",
     };
   },
-  methods: {
-    addGoal() {
-      this.goals.push(this.currentInput);
-      this.currentInput = "";
+  computed: {
+    isVisible() {
+      return {
+        visible: this.isParaVisible,
+        hidden: !this.isParaVisible,
+        user1: this.paraClassName === "user1",
+        user2: this.paraClassName === "user2",
+      };
     },
   },
-}).mount("#app");
+  methods: {
+    toggleVisibility() {
+      this.isParaVisible = !this.isParaVisible;
+    },
+  },
+});
+
+app.mount("#assignment");
